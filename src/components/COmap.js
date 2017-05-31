@@ -1,9 +1,11 @@
 'use strict';
  
 import React, { Component } from 'react';
-import { StyleSheet, View, Text } from 'react-native';
-
+import { MapView, StyleSheet, View, Text } from 'react-native';
+//import MapViewPage from './mapView'
  
+
+
 var styles = StyleSheet.create({
   description: {
     fontSize: 20,

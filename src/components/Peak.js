@@ -6,6 +6,8 @@ import { StyleSheet, View, Text, Image, ListView, TouchableHighlight, ScrollView
 // import ListViewSelect from 'react-native-list-view-select';
 // import _ from 'lodash';
 
+import Button from 'react-native-button';
+
 import SearchBar from './SearchBar';
 import Footer from './Footer'; 
 
@@ -34,7 +36,9 @@ var styles = StyleSheet.create({
   },
   exit: {
     fontSize: 30,
-    color: '#234F33',
+    color: 'white',
+    backgroundColor: '#234F33',
+    borderRadius: 2
   },
   rowContainer: {
     flexDirection: 'row',
@@ -180,18 +184,18 @@ class Peak extends Component {
       <View style={styles.container}>
         {this.state.showPeak && 
         <View style={styles.container}>  
-          <Text style={styles.exit} onPress={() => {this.setState({showPeak: false})}}>
-          X
-          </Text>
+          <Button style={styles.exit} onPress={() => {this.setState({showPeak: false})}}>
+          Back
+          </Button>
           <View style={styles.peak}>
-            <Text>{this.state.selectedPeak.name}</Text>
-            <Text>{this.state.selectedPeak.elevation} ft</Text>
-            <Text>Rating: {this.state.selectedPeak.rating}</Text>
-            <Text>Nearest town: {this.state.selectedPeak.near}</Text>
-            <Image source={{uri: this.state.selectedPeak.picture}} style={{width: 200, height: 200}}/>
-            <Text>Round Trip Distance: {this.state.selectedPeak.distance}</Text>
-            <Text>Directions: {this.state.selectedPeak.directions}</Text>
-            <Text>Route: {this.state.selectedPeak.route}</Text>
+            <Text style={{fontSize: 30, color: 'white', marginBottom: 10}}>{this.state.selectedPeak.name}</Text>
+            <Image source={{uri: this.state.selectedPeak.picture}} style={{width: 220, height: 220}}/>
+            <Text style={{fontSize: 18, marginTop: 5}}>Elevation: {this.state.selectedPeak.elevation} ft</Text>
+            <Text style={{fontSize: 18}}>Rating: {this.state.selectedPeak.rating}</Text>
+            <Text style={{fontSize: 18}}>Nearest town: {this.state.selectedPeak.near}</Text>    
+            <Text style={{fontSize: 18}}>Round Trip Distance: {this.state.selectedPeak.distance}</Text>
+            <Text style={{width: 220, marginTop: 5, backgroundColor: 'white'}}>Directions: {this.state.selectedPeak.directions}</Text>
+            <Text style={{width: 220, marginTop: 5, backgroundColor: 'white'}}>Route: {this.state.selectedPeak.route}</Text>
           </View>
         </View>
         ||
