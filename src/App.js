@@ -29,6 +29,14 @@ export default class CMC14ersApp extends Component {
       selectedTab: 'welcome'
     };
   }
+
+  handleSavePeak(data) {
+    //console.log("save button clicked");
+    console.log(data.name);
+    this.setState({peakInfo: data});
+
+  }
+
   render() {
       return (
         <TabBarIOS 
@@ -60,7 +68,9 @@ export default class CMC14ersApp extends Component {
                       selectedTab: 'peak',
                   });
             }}>
-            <Peak/>
+            <Peak
+            onSavePeak={this.handleSavePeak.bind(this)}
+            />
           </Icon.TabBarItemIOS>
           <Icon.TabBarItemIOS
             selected={this.state.selectedTab === 'comap'}

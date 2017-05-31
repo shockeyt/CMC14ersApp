@@ -13,6 +13,8 @@ import Footer from './Footer';
 
 import { Separator } from 'react-native-form-generator';
 
+import axios from 'axios';
+
 const ds = {};
 
 var styles = StyleSheet.create({
@@ -151,7 +153,7 @@ class Peak extends Component {
         route: "Follow the trail west past lower South Colony Lake."
       }
       ],
-      
+      //peakInfo: {},
       // dataSource: ds.cloneWithRows([
       //   {name: 'Mt. Evans', elevation: '14,100 ft'}
       //   ]),
@@ -173,6 +175,21 @@ class Peak extends Component {
       showPeak: true});
   }
 
+  // savePeak(data) {
+  //   //console.log("save button clicked");
+  //   console.log(data.name);
+  //   //this.setState({peakInfo: data});
+  //   axios.post('http://localhost:3000/peak/', {
+  //     name: data.name
+  //   })
+  //   .then(function (response) {
+  //     console.log(response);
+  //   })
+  //   .catch(function (error) {
+  //     console.log(error);
+  //   });
+  // }
+
   render() {
     //const {elevation, name} = this.state.selectedPeak;
     console.log(this.state.selectedPeak);
@@ -187,7 +204,9 @@ class Peak extends Component {
           <Button style={styles.exit} onPress={() => {this.setState({showPeak: false})}}>
           Back
           </Button>
+          <ScrollView>
           <View style={styles.peak}>
+          
             <Text style={{fontSize: 30, color: 'white', marginBottom: 10}}>{this.state.selectedPeak.name}</Text>
             <Image source={{uri: this.state.selectedPeak.picture}} style={{width: 220, height: 220}}/>
             <Text style={{fontSize: 18, marginTop: 5}}>Elevation: {this.state.selectedPeak.elevation} ft</Text>
@@ -196,7 +215,10 @@ class Peak extends Component {
             <Text style={{fontSize: 18}}>Round Trip Distance: {this.state.selectedPeak.distance}</Text>
             <Text style={{width: 220, marginTop: 5, backgroundColor: 'white'}}>Directions: {this.state.selectedPeak.directions}</Text>
             <Text style={{width: 220, marginTop: 5, backgroundColor: 'white'}}>Route: {this.state.selectedPeak.route}</Text>
+            <Button onPress={() => {this.props.onSavePeak(this.state.selectedPeak)}}>Save</Button>
+          
           </View>
+          </ScrollView>
         </View>
         ||
       <View style={styles.container}>
