@@ -1,7 +1,7 @@
 'use strict';
  
 import React, { Component } from 'react';
-import { StyleSheet, View, Text, Image, ListView, TouchableHighlight } from 'react-native';
+import { StyleSheet, View, Text, Image, ListView, TouchableHighlight, ScrollView } from 'react-native';
 
 // import ListViewSelect from 'react-native-list-view-select';
 // import _ from 'lodash';
@@ -21,8 +21,9 @@ var styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    // justifyContent: 'center',
+    // alignItems: 'center',
+    height: 200,
     backgroundColor: '#82C6E2',
     marginTop: 20,
   },
@@ -47,6 +48,15 @@ var styles = StyleSheet.create({
   rowText: {
     marginLeft: 12,
     fontSize: 16,
+  },
+  rowElevation: {
+    // marginLeft: 40,
+    left: 40,
+    
+  },
+  textElevation: {
+    color: 'white',
+    textAlign: 'right',
   },
   separator: {
     flex: 1,
@@ -99,6 +109,42 @@ class Peak extends Component {
         picture: "https://s3.amazonaws.com/gs-geo-images/1d555f19-3f27-44ae-b24c-84cccdddbbef_l.jpg", 
         directions: "To reach the Barr Trail, drive to Manitou Springs and locate the City Hall.  Proceed west on US-25 about 0.5 miles to Ruxton Ave.",
         route: "From the trailhead the route switchbacks and climbs steeply for 3.5 miles, then rises gradually for the next 2 miles."
+      },
+      { name: 'Kit Carson Peak', 
+        elevation: "14,165", 
+        rating: "Very difficult", 
+        distance: "6 miles", 
+        near: "Westcliffe",
+        picture: "https://s3.amazonaws.com/gs-geo-images/1d555f19-3f27-44ae-b24c-84cccdddbbef_l.jpg", 
+        directions: "Approaching from the north, go 14 miles on CO 17 and US 285, or approaching from the south, go north 17 miles from Hooper on CO 17.",
+        route: "Take the trail around the north side of the lake and continue above the falls."
+      },
+      { name: 'Humboldt Peak', 
+        elevation: "14,064", 
+        rating: "Moderate", 
+        distance: "4 miles", 
+        near: "Westcliffe",
+        picture: "https://s3.amazonaws.com/gs-geo-images/1d555f19-3f27-44ae-b24c-84cccdddbbef_l.jpg", 
+        directions: "From Westcliffe, drive southeast about 4.5 miles on CO 69 toward Walsenburg.",
+        route: "From lower South Colony Lake, hike northwest on the trail up South Colony Creek to the east side."
+      },
+      { name: 'Crestone Peak', 
+        elevation: "14,294", 
+        rating: "Very difficult", 
+        distance: "6 miles", 
+        near: "Westcliffe",
+        picture: "https://s3.amazonaws.com/gs-geo-images/1d555f19-3f27-44ae-b24c-84cccdddbbef_l.jpg", 
+        directions: "From Westcliffe drive southeast about 4.5 miles on CO 69 toward Walsenburg.",
+        route: "Follow the trail west past lower South Colony Lake."
+      },
+      { name: 'Crestone Needle', 
+        elevation: "14,197", 
+        rating: "Very difficult", 
+        distance: "3 miles", 
+        near: "Westcliffe",
+        picture: "https://s3.amazonaws.com/gs-geo-images/1d555f19-3f27-44ae-b24c-84cccdddbbef_l.jpg", 
+        directions: "From Westcliffe drive southeast about 4.5 miles on CO 69 toward Walsenburg.",
+        route: "Follow the trail west past lower South Colony Lake."
       }
       ],
       
@@ -153,16 +199,22 @@ class Peak extends Component {
         <Text style={styles.description}>
           14er List
         </Text>
+        <ScrollView>
         <ListView
           dataSource={this.state.dataSource}
           renderRow={(data) => <View style={styles.rowContainer}>
             <Image source={{uri: data.picture}} style={{width: 40, height: 40, borderRadius: 20}} />
             <Text style={styles.rowText} onPress={() => {this.rowClick(data)}}>{data.name}</Text>
-            </View>}
+              <View style={styles.rowElevation}>
+                <Text style={styles.textElevation}>{data.elevation} ft</Text>
+              </View>
+            </View>
+          }
           renderSeparator={(data) => <View key={data.elevation} style={styles.separator}/>}
           renderHeader={() => <SearchBar />}
           renderFooter={() => <Footer />}
         />
+        </ScrollView>
           
       </View>
       }
