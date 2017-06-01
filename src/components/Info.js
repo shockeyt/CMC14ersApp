@@ -132,8 +132,8 @@ class Info extends Component {
       case "club":
       return (
         <View style={styles.container}>
-          <Text>Club information</Text>
-          <Text>{this.props.peakInfo}</Text>
+          <Text style={{marginBottom: 10, fontSize: 40, color: 'white'}}>About Us</Text>
+          <Text style={{marginLeft: 20, marginRight: 20, fontSize: 16, color: 'white', marginBottom: 5}}>The Colorado Mountain Club is the state’s leading organization dedicated to adventure, recreation, conservation and education. Founded in 1912, the CMC acts as a gateway to the mountains for novices and experts alike, offering an array of year-round activities, events and schools centered on outdoor recreation. The Club comprises 14 regional groups across the state to serve the local needs of its members and partners. To ensure the continued enjoyment of Colorado’s pristine places, the CMC also leads efforts to protect wild and public lands with its conservation and stewardship programs. The Club publishes a quarterly magazine, Trail & Timberline, and operates a press with more than 45 current titles. No other organization in the Intermountain West employs such a strong or broad approach to connecting people with the Rocky Mountain landscape.</Text>
           <Button onPress={() => {this.setState({whichPage: "home"})}}>{arrow}</Button>
         </View>
         )
