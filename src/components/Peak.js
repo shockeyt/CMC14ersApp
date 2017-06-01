@@ -15,6 +15,9 @@ import { Separator } from 'react-native-form-generator';
 
 import axios from 'axios';
 
+import Icon from 'react-native-vector-icons/FontAwesome';
+const myIcon = (<Icon name="check-circle-o" size={40} color="#900" />);
+
 const ds = {};
 
 var styles = StyleSheet.create({
@@ -40,6 +43,7 @@ var styles = StyleSheet.create({
     fontSize: 30,
     color: 'white',
     backgroundColor: '#234F33',
+    marginTop: 0,
     borderRadius: 2
   },
   rowContainer: {
@@ -68,6 +72,9 @@ var styles = StyleSheet.create({
     flex: 1,
     height: StyleSheet.hairlineWidth,
     backgroundColor: '#8E8E8E',
+  },
+  completed: {
+    // flex: 2,
   },
 });
  
@@ -200,22 +207,26 @@ class Peak extends Component {
     return (
       <View style={styles.container}>
         {this.state.showPeak && 
-        <View style={styles.container}>  
+        <View style={styles.container}> 
+        <ScrollView> 
           <Button style={styles.exit} onPress={() => {this.setState({showPeak: false})}}>
           Back
           </Button>
-          <ScrollView>
-          <View style={styles.peak}>
           
-            <Text style={{fontSize: 30, color: 'white', marginBottom: 10}}>{this.state.selectedPeak.name}</Text>
-            <Image source={{uri: this.state.selectedPeak.picture}} style={{width: 220, height: 220}}/>
+          <View style={styles.peak}>
+            <View style={styles.completed}>
+              
+              <Text style={{marginLeft:100, marginTop:0, fontSize: 18}} onPress={() => {this.props.onSavePeak(this.state.selectedPeak)}}>Completed {myIcon}</Text>
+            </View>
+            <Text style={{fontSize: 30, color: 'white', marginBottom: 10, marginTop: 10}}>{this.state.selectedPeak.name}</Text>
+            <Image source={{uri: this.state.selectedPeak.picture}} style={{width: 270, height: 270}}/>
             <Text style={{fontSize: 18, marginTop: 5}}>Elevation: {this.state.selectedPeak.elevation} ft</Text>
             <Text style={{fontSize: 18}}>Rating: {this.state.selectedPeak.rating}</Text>
             <Text style={{fontSize: 18}}>Nearest town: {this.state.selectedPeak.near}</Text>    
             <Text style={{fontSize: 18}}>Round Trip Distance: {this.state.selectedPeak.distance}</Text>
-            <Text style={{width: 220, marginTop: 5, backgroundColor: 'white'}}>Directions: {this.state.selectedPeak.directions}</Text>
-            <Text style={{width: 220, marginTop: 5, backgroundColor: 'white'}}>Route: {this.state.selectedPeak.route}</Text>
-            <Button onPress={() => {this.props.onSavePeak(this.state.selectedPeak)}}>Save</Button>
+            <Text style={{width: 270, marginTop: 5, backgroundColor: 'white'}}>Directions: {this.state.selectedPeak.directions}</Text>
+            <Text style={{width: 270, marginTop: 5, backgroundColor: 'white'}}>Route: {this.state.selectedPeak.route}</Text>
+            
           
           </View>
           </ScrollView>
