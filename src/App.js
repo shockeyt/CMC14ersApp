@@ -11,6 +11,8 @@ import {
   NavigatorIOS
 } from 'react-native';
 
+import axios from 'axios';
+
 import Icon from 'react-native-vector-icons/FontAwesome';
 const myIcon = (<Icon name="rocket" size={30} color="#900" />);
 
@@ -34,7 +36,15 @@ export default class CMC14ersApp extends Component {
     //console.log("save button clicked");
     console.log(data.name);
     this.setState({peakInfo: data});
-
+    axios.post('http://localhost:3000/peak/', {
+        name: data.name
+      })
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   }
 
   render() {

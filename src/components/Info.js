@@ -22,6 +22,7 @@ var styles = StyleSheet.create({
 
 let summits = {}; 
 let summitArray = [];
+let testArray = ["A", "B", "C"];
 
 class Info extends Component {
   constructor(props){
@@ -54,20 +55,15 @@ class Info extends Component {
   peakData() {
     console.log("my peaks pushed");
     this.setState({whichPage: "peaks"});
-    axios.get('http://localhost:3000/peak/')
-      .then(function (response) {
-        console.log(response.data);
-        summits = response.data;
-        summits.forEach(function(peaks) {
-          summitArray.push(peaks.name);
-        }); 
-        console.log(summitArray);
+  }
 
-      })
-      .catch(function (error) {
-        console.log(error);
-    });
+  renderItem = (text, i) => {
+    console.log("am i alive?");
+    return (
+   
+      <Text>{text}</Text>
 
+    )
   }
 
   essentialsList() {
@@ -83,12 +79,16 @@ class Info extends Component {
   // }
 
   renderContent(){
+    console.log("summit array is", summitArray);
     switch (this.state.whichPage) {
       case "peaks":
       return (
         <View style={styles.container}>
-          <Text>My Peaks List</Text>
+          <Text>My Peaks</Text>
           <Text>{this.props.peakInfo}</Text>
+          <View>
+            {summitArray.map(this.renderItem)}
+          </View>
           <Button onPress={() => {this.setState({whichPage: "home"})}}>Back</Button>
         </View>
         )
@@ -124,9 +124,23 @@ class Info extends Component {
 
   componentWillMount() {
     this.setState({whichPage: "home"});
+    axios.get('http://localhost:3000/peak/')
+      .then(function (response) {
+        console.log(response.data);
+        summits = response.data;
+        summits.forEach(function(peaks) {
+          summitArray.push(peaks.name);
+        }); 
+        console.log(summitArray);
+
+      })
+      .catch(function (error) {
+        console.log(error);
+    });
   }
 
   render() {
+    console.log(summitArray);
     return (
       <View style={styles.container}>
         {this.renderContent()}
