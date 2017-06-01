@@ -96,7 +96,8 @@ class Register extends Component {
     postRegister(data){
       console.log("form data is", data);
       //this.setState({showComplete: true});
-      axios.post('http://localhost:3000/register/', {
+      //axios.post('http://localhost:3000/register/', {
+      axios.post('https://cmcdata.herokuapp.com/register/', {  
         peak: data.peak,
         first_name: data.first_name,
         last_name: data.last_name,

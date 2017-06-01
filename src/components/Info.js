@@ -153,7 +153,8 @@ class Info extends Component {
 
   componentWillMount() {
     this.setState({whichPage: "home"});
-    axios.get('http://localhost:3000/peak/')
+    //axios.get('http://localhost:3000/peak/')
+    axios.get('https://cmcdata.herokuapp.com/peak/')
       .then(function (response) {
         console.log(response.data);
         summits = response.data;

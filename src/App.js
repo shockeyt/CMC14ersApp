@@ -36,7 +36,8 @@ export default class CMC14ersApp extends Component {
     //console.log("save button clicked");
     console.log(data.name);
     this.setState({peakInfo: data});
-    axios.post('http://localhost:3000/peak/', {
+    //axios.post('http://localhost:3000/peak/', {
+    axios.post('https://cmcdata.herokuapp.com/peak/', {  
         name: data.name
       })
       .then(function (response) {
