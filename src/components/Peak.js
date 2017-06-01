@@ -8,7 +8,7 @@ import {  StyleSheet,
           ListView, 
           TouchableHighlight, 
           ScrollView,
-          TextInput
+          TextInput,
         } from 'react-native';
 
 // import ListViewSelect from 'react-native-list-view-select';
@@ -173,11 +173,15 @@ class Peak extends Component {
           <Button style={styles.exit} onPress={() => {this.setState({showPeak: false})}}>
           {arrow}
           </Button>
-          
+ 
           <View style={styles.peak}>
-            <View style={styles.completed}>
-              
-              <Text style={{marginTop:0, fontSize: 18}} onPress={() => {this.props.onSavePeak(this.state.selectedPeak)}}>Completed? {myIcon}</Text>
+            <View>
+              <TouchableHighlight>
+                <View style={{marginLeft:110, marginRight:110}}>
+                <Button onPress={() => {this.props.onSavePeak(this.state.selectedPeak)}}>Completed? {myIcon}</Button>
+                </View>
+              </TouchableHighlight> 
+             
             </View>
             <Text style={{fontSize: 30, color: 'white', marginBottom: 10, marginTop: 10}}>{this.state.selectedPeak.name}</Text>
             <Image source={{uri: this.state.selectedPeak.picture}} style={{width: 270, height: 270}}/>
@@ -210,10 +214,15 @@ class Peak extends Component {
         <ListView
           enableEmptySections={true}
           dataSource={this.state.dataSource}
-          renderRow={(data) => <View style={styles.rowContainer}>
-            <Image source={{uri: data.picture}} style={{width: 40, height: 40, borderRadius: 20}} />
-            <Text style={styles.rowText} onPress={() => {this.rowClick(data)}}>{data.name}</Text>
-              <View style={styles.rowElevation}>
+          renderRow={(data) => 
+            <View style={styles.rowContainer}>
+              <View style={{flex: 1}}>
+                <Image source={{uri: data.picture}} style={{width: 40, height: 40, borderRadius: 20}} />
+              </View>
+              <View style={{flex: 2, marginRight: 80}}>  
+                <Text style={styles.rowText} onPress={() => {this.rowClick(data)}}>{data.name}</Text>
+              </View>
+              <View style={{flex: 2}}>
                 <Text style={styles.textElevation}>{compass} {data.elevation} ft</Text>
               </View>
             </View>
