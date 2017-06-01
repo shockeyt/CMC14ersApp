@@ -32,7 +32,7 @@ var styles = StyleSheet.create({
   button: {
     fontSize: 20,
     height: 50,
-    paddingTop: 5,
+    paddingTop: 10,
     color: 'white',
     backgroundColor: '#234F33',
   },
@@ -200,7 +200,6 @@ class Register extends Component {
           />
           <InputField label='Birthday Year' ref='birth_year' placeholder='Year'/>  
           <Button style={styles.button} onPress={()=>{this.postRegister(this.state.formData)}}>Submit</Button>
-          <Button onPress={()=>{this.getRegisters()}}>Check</Button>
           </Form>
           
           <Text>{JSON.stringify(this.state.formData)}</Text>

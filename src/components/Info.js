@@ -1,11 +1,21 @@
 'use strict';
  
 import React, { Component } from 'react';
-import { StyleSheet, View, Text, ListView } from 'react-native';
+import { StyleSheet, View, Text, ListView, Image } from 'react-native';
 
 import axios from 'axios';
 import Button from 'react-native-button';
+
+import Icon from 'react-native-vector-icons/FontAwesome';
+const listIcon = (<Icon name="arrow-right" size={30} color="#2f62bf" />);
+const arrow = (<Icon name="chevron-left" size={50} color="#2f62bf" />);
+const angle = (<Icon name="angle-double-right" size={20} color="#234F33" />);
  
+const logo = require('../images/CMC_logo_edit2.png');
+const hikeone = require('../images/hikepic3.png');
+const hiketwo = require('../images/hikepic4.png');
+const peakbag = require('../images/peakbagged.png');
+
 var styles = StyleSheet.create({
   description: {
     fontSize: 20,
@@ -17,6 +27,11 @@ var styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#82C6E2',
+  },
+  links: {
+    fontSize: 25,
+    marginBottom: 15,
+    color: '#234F33'
   }
 });
 
@@ -60,9 +75,10 @@ class Info extends Component {
   renderItem = (text, i) => {
     console.log("am i alive?");
     return (
-   
-      <Text>{text}</Text>
-
+      <View style={{margin: 20}}>
+        <Image style={{width:40, height:40}} source={peakbag} />
+        <Text style={{fontSize: 25}}>{text}</Text>
+      </View>
     )
   }
 
@@ -84,20 +100,33 @@ class Info extends Component {
       case "peaks":
       return (
         <View style={styles.container}>
-          <Text>My Peaks</Text>
+          <Text style={{fontSize: 30, color: 'white'}}>My Peaks</Text>
           <Text>{this.props.peakInfo}</Text>
           <View>
             {summitArray.map(this.renderItem)}
           </View>
-          <Button onPress={() => {this.setState({whichPage: "home"})}}>Back</Button>
+          <Button onPress={() => {this.setState({whichPage: "home"})}}>{arrow}</Button>
         </View>
         )
       case "essentials":
       return (
         <View style={styles.container}>
-          <Text>Top 10 Essentials List</Text>
-          <Text>{this.props.peakInfo}</Text>
-          <Button onPress={() => {this.setState({whichPage: "home"})}}>Back</Button>
+          <Text style={{marginBottom: 10, fontSize: 40, color: 'white'}}>Top 10 Essentials</Text>
+          <Text style={{marginBottom: 5, fontSize: 14, marginLeft: 20, marginRight: 20}}>A properly equipped hiker will more likely than not have a successful outing. Essential equipment includes: broken-in hiking boots over wool socks on your feet and an extra pair of socks, wool or polypro, in your pack; quick-drying pants or rain pants, not cotton jeans; a lightweight wool or polypro shirt, not cotton; a hooded waterproof jacket or parka; warm head covering and gloves; and plenty of water, plus at least one meal and additional snacks.</Text>
+          <Text style={{marginBottom: 5, fontSize: 14, marginLeft: 20, marginRight: 20}}>The CMC has adopte a list, compiled by the Mountaineers of Seattle, of the '10 Essentials' that hikers and mountain climbers should carry in their day packs or backpacks.</Text>
+          <View>
+            <Text style={{fontSize: 16, color: 'white'}}>{angle} Map</Text>
+            <Text style={{fontSize: 16, color: 'white'}}>{angle} Compass</Text>
+            <Text style={{fontSize: 16, color: 'white'}}>{angle} Flashlight or headlamp</Text>
+            <Text style={{fontSize: 16, color: 'white'}}>{angle} Extra food</Text>
+            <Text style={{fontSize: 16, color: 'white'}}>{angle} Sun protection-hat, sunglasses, sunscreen</Text>
+            <Text style={{fontSize: 16, color: 'white'}}>{angle} Extra clothing</Text>
+            <Text style={{fontSize: 16, color: 'white'}}>{angle} A small first aid kit</Text>
+            <Text style={{fontSize: 16, color: 'white'}}>{angle} Pocket knife</Text>
+            <Text style={{fontSize: 16, color: 'white'}}>{angle} Matches</Text>
+            <Text style={{fontSize: 16, color: 'white'}}>{angle} Fire starter</Text>
+          </View>
+          <Button onPress={() => {this.setState({whichPage: "home"})}}>{arrow}</Button>
         </View>
         )
       case "club":
@@ -105,18 +134,18 @@ class Info extends Component {
         <View style={styles.container}>
           <Text>Club information</Text>
           <Text>{this.props.peakInfo}</Text>
-          <Button onPress={() => {this.setState({whichPage: "home"})}}>Back</Button>
+          <Button onPress={() => {this.setState({whichPage: "home"})}}>{arrow}</Button>
         </View>
         )
       case "home":
       return (
         <View style={styles.container}>
-          <Text style={styles.description}>
-            Info page!
-          </Text>
-          <Button onPress={() => {this.peakData()}}>My Peaks</Button>
-          <Button onPress={() => {this.essentialsList()}}>Hiking Essentials</Button>
-          <Button onPress={() => {this.clubInfo()}}>About Us</Button>
+          <Image source={hikeone} />
+          <Button style={styles.links} onPress={() => {this.peakData()}}>My Peaks</Button>
+          <Image source={hiketwo} />
+          <Button style={styles.links} onPress={() => {this.essentialsList()}}>Hiking Essentials</Button>
+          <Image source={logo} />
+          <Button style={styles.links} onPress={() => {this.clubInfo()}}>About Us</Button>
         </View>
         ) 
     }
