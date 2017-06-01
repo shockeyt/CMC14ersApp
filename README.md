@@ -1,10 +1,13 @@
 # Colorado Mountain Club 14ers App
 
-#[Link to Heroku Server](https://cmcdata.herokuapp.com/)
-
 #[Link to Trello](https://trello.com/b/7SOzkRQN/cmc-14er-app)
 
-## CMC 14ers App is a mobile deployed app that integrates with the Colorado Mountain Club's summit logging program.  It displays a tab based interface that easily navigates peak information.  
+#[Link to Heroku Server](https://cmcdata.herokuapp.com/)
+
+#[Server Github](https://github.com/shockeyt/CMCData)
+
+## About the Project
+CMC 14ers App is a mobile deployed app that integrates with the Colorado Mountain Club's summit logging program.  It displays a tab based interface that easily navigates peak information.  
 The Peaks tab generates a master list of all the 14ers in Colorado.  Search the list by typing in the search bar; lists will automatically render by letters.  Click on a mountain to display in depth information for that peak.  If you have completed that peak, click the completed button to save the peak to the saved page (info tab).
 The Map tab shows a map with all the locations of all the 14ers.
 The Register tab shows the CMC summit log form.  Filling out the form will save the form to the database.
